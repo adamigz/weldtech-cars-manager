@@ -18,11 +18,14 @@
             </div>
         </div>
         <div class="flex font-bold"  x-show="filters" x-transition>
-            <div class="w-1/2 mr-2">
+            <div class="w-1/3 mr-2">
                 <input type="text" placeholder="Imię i nazwisko" class="border-b-2 border-slate-200 focus:border-blue-300 outline-none" wire:model='driverNameFilter'>
             </div>
-            <div class="w-1/2 mr-2">
+            <div class="w-1/3 mr-2">
                 <input type="text" placeholder="Numer rejestracyjny" class="border-b-2 border-slate-200 focus:border-blue-300 outline-none" wire:model='carRegistrationFilter'>
+            </div>
+            <div class="w-1/3">
+                <input type="text" placeholder="Numer DKV" class="border-b-2 border-slate-200 focus:border-blue-300 outline-none" wire:model='dkvNumberFilter'>
             </div>
         </div>
     </div>

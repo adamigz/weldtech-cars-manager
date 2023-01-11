@@ -9,6 +9,7 @@ class CarDriver extends Component
 {
     public $driverNameFilter = '';
     public $carRegistrationFilter = '';
+    public $dkvNumberFilter = '';
 
     public function getCarDriver()
     {
@@ -17,7 +18,9 @@ class CarDriver extends Component
         }
         if ($this->carRegistrationFilter != '') {
             return CD::where('car_registration', 'LIKE', '%'.$this->carRegistrationFilter.'%')->orderBy('created_at', 'desc')->get()->groupBy('car_registration');
-
+        }
+        if ($this->dkvNumberFilter != '') {
+            return CD::where('dkv_number', 'LIKE', '%'.$this->dkvNumberFilter.'%')->orderBy('created_at', 'desc')->get()->groupBy('car_registration');
         }
         return CD::orderBy('created_at', 'desc')->get()->groupBy('car_registration');
     }
