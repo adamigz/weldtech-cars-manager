@@ -36,7 +36,7 @@ class CarDriverController extends Controller
         $carDriver = CarDriver::create([
             'driver_name' => $request->driver_name,
             'car_registration' => $request->car_registration,
-            'dkv_number' => (int) $request->dkv_number,
+            'dkv_number' => $request->dkv_number,
             'from' => $request->from,
             'to' => $request->from,
             'previous_owner' => CarDriver::where('car_registration', $request->car_registration)->latest('created_at')->first()->driver_name ?? 'Brak'
@@ -79,14 +79,29 @@ class CarDriverController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function edit(CarDriver $carDriver)
     {
-        //
+        return view('car_driver_update', ['carDriver' => $carDriver]);
+    }
+
+    public function update(Request $request, CarDriver $carDriver)
+    {
+        $request->validate([
+            'driver_name' => 'required|string',
+            'car_registration' => 'required|string',
+            'dkv_number' => 'required|numeric',
+            'from' => 'required|string'
+        ]);
+
+        $carDriver->update([
+            'driver_name' => $request->driver_name,
+            'car_registration' => $request->car_registration,
+            'dkv_number' => $request->dkv_number,
+            'from' => $request->from
+        ]);
+
+        $request->session()->flash('message', 'Pomyślnie zaktualizowano dane');
+
+        return redirect()->route('dashboard');
     }
 }

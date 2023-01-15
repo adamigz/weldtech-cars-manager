@@ -50,6 +50,9 @@
                 </span>
             </div>
         </div>
+        <a href="{{ route('update_carDriver', ['carDriver' => $car_driver]) }}" class="mb-2 flex bg-green-600 text-center py-2 rounded hover:bg-green-500 text-white text-2xl font-bold transition-all">
+            <span class="mx-auto">Edytuj</span>
+        </a>
         @if ($car_driver->from == $car_driver->to)
         <div class="flex bg-blue-600 text-center py-2 rounded hover:bg-blue-500 text-white text-2xl font-bold transition-all" @click="open = !open">
             <span class="mx-auto">Zakończ posiadanie auta</span>

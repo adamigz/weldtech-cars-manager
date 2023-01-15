@@ -47,5 +47,8 @@
                 <span class="text-blue-600 font-bold ml-2">{{ $payment->dkv_number }}</span>
             @endif
         </div>
+        <a href="{{ route('updatePayment', ['payment' => $payment]) }}" class="mb-2 flex bg-green-600 text-center py-2 rounded hover:bg-green-500 text-white text-2xl font-bold transition-all">
+            <span class="mx-auto">Edytuj</span>
+        </a>
     </div>
 </x-app-layout>

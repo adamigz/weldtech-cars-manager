@@ -72,7 +72,7 @@ class PaymentsController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view('payment_update', ['payment' => $payment]);
     }
 
     /**
@@ -84,7 +84,31 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $request->validate([
+            'driver_name' => 'required|string',
+            'car_registration' => 'required|string',
+            'price' => 'required|numeric',
+            'currency' => 'required',
+            'fuel_quantity' => 'required|numeric',
+            'car_course' => 'required|numeric',
+            'refueling_date' => 'required',
+            'dkv_number' => 'numeric|nullable'
+        ]);
+
+        $payment->update([
+            'driver_name' => $request->driver_name,
+            'car_registration' => $request->car_registration,
+            'price' => (float)$request->price,
+            'currency' => $request->currency,
+            'fuel_quantity' => (float)$request->fuel_quantity,
+            'car_course' => (int)$request->car_course,
+            'refueling_date' => $request->refueling_date,
+            'dkv_number' => $request->dkv_number == '' ? null : $request->dkv_number
+        ]);
+
+        $request->session()->flash('message', 'Pomyślnie zaktualizowano płatność');
+
+        return redirect()->route('dashboard');
     }
 
     /**
