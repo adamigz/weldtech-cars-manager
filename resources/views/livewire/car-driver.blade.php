@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="max-h-[calc(100vh-121px)]" style="overflow:scroll;" >
+    <div class="max-h-[calc(100vh-121px)]" id="paymentsBox" style="overflow:scroll;" >
     @foreach ($cars as $registration_number => $group)
         <div class="text-2xl font-bold text-blue-600 mx-2">{{ $registration_number }}</div>
         <hr class="m-2">
